@@ -1,9 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from '../Components/Navbar';
 
-export const Theatre = ({ movieName }) => {
+export const Theatre = () => {
   const [date, setDate] = useState(new Date());
   const [theatreData, setTheatreData] = useState([]);
+  const [movieName, setMovieName] = useState('');
+
+  // Function to get the movie title from local storage
+  const getMovieTitleFromLocalStorage = () => {
+    const storedMovieTitle = localStorage.getItem('selectedMovieTitle');
+    if (storedMovieTitle) {
+      setMovieName(storedMovieTitle);
+    }
+  };
+
+  useEffect(() => {
+    // Get the movie title from local storage when the component mounts
+    getMovieTitleFromLocalStorage();
+    fetchTheatreData();
+  }, [date]);
 
   const fetchTheatreData = () => {
     // Dummy data for theaters and show timings
@@ -17,17 +32,13 @@ export const Theatre = ({ movieName }) => {
 
     const theatreData = theatres.map((theatre, index) => ({
       theatreName: theatre,
-      movieName: movieName,
+      movieName: movieName, // Use the movieName state variable
       date: date.toDateString(),
       showTimings: showTimings[index],
     }));
 
     setTheatreData(theatreData);
   };
-
-  useEffect(() => {
-    fetchTheatreData();
-  }, [date, movieName]);
 
   const handleDateChange = (event) => {
     const selectedDate = new Date(event.target.value);
@@ -45,7 +56,8 @@ export const Theatre = ({ movieName }) => {
   return (
     <div>
       <Navbar />
-      <h1>Apni suvidha anusar show ka chayan karein</h1>
+      <h1>{movieName} Showtimes</h1>
+      <h2>Apni suvidhausar show ka chayan karein</h2>
       <div className='theatremaindiv'>
         <label htmlFor="datePicker">Select Date:</label>
         <input
@@ -55,33 +67,30 @@ export const Theatre = ({ movieName }) => {
           value={date.toISOString().slice(0, 10)}
           min={new Date().toISOString().slice(0, 10)} // Prevent selecting past dates
         />
-      <div className='theatrenextdiv'>
-        {theatreData.map((theatre, index) => (
-          <div className='theatrediv' key={index}>
-
-            <div>
-            <h2>Theatre: {theatre.theatreName}</h2>
-            <p>Movie: {theatre.movieName}</p>
-            <p>Date: {theatre.date}</p>
+        <div className='theatrenextdiv'>
+          {theatreData.map((theatre, index) => (
+            <div className='theatrediv' key={index}>
+              <div>
+                <h2>Theatre: {theatre.theatreName}</h2>
+                <h3>Movie: {movieName}</h3>
+                <h4>Date: {theatre.date}</h4>
+              </div>
+              <div>
+                <p>Show Timings:</p>
+                {theatre.showTimings.map((showTiming, timingIndex) => (
+                  <button
+                    className='showbutton'
+                    key={timingIndex}
+                    onClick={() => handleShowTimingClick(showTiming)}
+                  >
+                    {showTiming}
+                  </button>
+                ))}
+              </div>
             </div>
-
-            <div >
-              <p>Show Timings:</p>
-              {theatre.showTimings.map((showTiming, timingIndex) => (
-                <button
-                className='showbutton'
-                  key={timingIndex}
-                  onClick={() => handleShowTimingClick(showTiming)}
-                >
-                  {showTiming}
-                </button>
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-      </div>
-
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const OMDB_API_KEY = '34bbb2f5';
 
 export const Filmein = () => {
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -14,8 +14,8 @@ export const Filmein = () => {
     axios
       .get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=godfather`)
       .then((response) => {
-        setMovies(response.data.Search || []); 
-        setIsLoading(false); 
+        setMovies(response.data.Search || []);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -23,10 +23,10 @@ export const Filmein = () => {
       });
   }, []);
 
-  const savename= () => {
-    
-    navigate("/homepage/theatre")
-  }
+  const saveNameToLocalStorage = (movieTitle) => {
+    localStorage.setItem('selectedMovieTitle', movieTitle);
+    navigate('/homepage/theatre');
+  };
 
   return (
     <div>
@@ -38,7 +38,12 @@ export const Filmein = () => {
         <div className='mainmoviediv'>
           {movies.map((movie) => (
             <div className='moviediv' key={movie.imdbID}>
-              <img onClick={savename} className='poster' src={movie.Poster} alt={movie.Title} />
+              <img
+                onClick={() => saveNameToLocalStorage(movie.Title)}
+                className='poster'
+                src={movie.Poster}
+                alt={movie.Title}
+              />
               <h3>Title: {movie.Title}</h3>
             </div>
           ))}
