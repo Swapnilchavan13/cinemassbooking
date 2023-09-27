@@ -54,12 +54,10 @@
     padding:15px;
     margin: 8px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .theatrediv{
     display: flex;
     justify-content: space-between;
-}
-hr{
-    color: red;
 }
