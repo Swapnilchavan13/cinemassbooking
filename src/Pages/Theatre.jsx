@@ -15,7 +15,6 @@ export const Theatre = () => {
   };
 
   useEffect(() => {
-    // Get the movie title from local storage when the component mounts
     getMovieTitleFromLocalStorage();
     fetchTheatreData();
   }, [date]);
