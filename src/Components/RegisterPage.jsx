@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export const RegisterPage = () => {
+
+  const navigate= useNavigate()
 
     const [useranme, setUsername] = useState('')
     const [email, setEmail] = useState('')
@@ -10,10 +13,11 @@ export const RegisterPage = () => {
 
     const Signup = () => {
         alert("Your account has been created successfully")
+        navigate("/login")
     }
 
   return (
-    <div>
+    <div className='container'>
         <h2>Register Page</h2>
         <label htmlFor="Username">Enter Username</label>
         <input type="text" value={useranme} onChange={(e) => setUsername(e.target.value)}  placeholder='Enter Username' name="username" required/>

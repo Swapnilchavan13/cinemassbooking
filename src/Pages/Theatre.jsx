@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from '../Components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 export const Theatre = () => {
+
+  const navigate = useNavigate()
   const [date, setDate] = useState(new Date());
   const [theatreData, setTheatreData] = useState([]);
   const [movieName, setMovieName] = useState('');
@@ -50,13 +53,14 @@ export const Theatre = () => {
   const handleShowTimingClick = (showTiming) => {
     // Handle the click event for show timing here
     console.log(`Show timing selected: ${showTiming}`);
+    navigate('/booking')
   };
 
   return (
     <div>
       <Navbar />
       <h1>{movieName} Showtimes</h1>
-      <h2>Apni suvidhausar show ka chayan karein</h2>
+      <h2>अपनी सुविधानुसार शो का चयन करें</h2>
       <div className='theatremaindiv'>
         <label htmlFor="datePicker">Select Date:</label>
         <input

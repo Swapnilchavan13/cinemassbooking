@@ -6,6 +6,7 @@ import './App.css';
 import { Filmein } from "./Pages/Filmein";
 import { Theatre } from "./Pages/Theatre";
 import { Shehar } from "./Pages/Shehar";
+import { BookingSystem } from "./Components/Bookingsystem";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<RegisterPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/homepage" element={<Homepage />} />
+          <Route path="/booking" element={<BookingSystem />} />
           <Route path="/homepage/filmein" element={<Filmein />} />
           <Route path="/homepage/theatre" element={<Theatre />} />
           <Route path="/homepage/shehar" element={<Shehar />} />

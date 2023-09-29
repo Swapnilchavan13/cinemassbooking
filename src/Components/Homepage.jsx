@@ -11,8 +11,8 @@ export const Homepage = () => {
     <div>
         <Navbar />
       <div>
-        <h2>Namaste {user}</h2>
-        <h3>Neeche Diye Gaye Vikalp Me se Kisi Ek Ka Chayan Karain</h3>
+        <h2>नमस्ते {user}</h2>
+        <h2>नीचे दिए गए विकल्प में से किसी एक का चयन करें</h2>
       </div>
       <div>
         <Link to="/homepage/filmein">
@@ -25,7 +25,6 @@ export const Homepage = () => {
         <button className='chayanbutton'>Shehar</button>
         </Link>
       </div>
-
     </div>
   );
 };

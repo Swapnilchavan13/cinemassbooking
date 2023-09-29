@@ -1,4 +1,3 @@
-
 .homepagefirst {
     border: 1px solid black;
     background-color: rgb(44, 43, 46);
@@ -32,6 +31,10 @@
 .moviediv{
     border-radius: 10px;
 }
+
+
+/* ////////////theatre///////////// */
+
 .theatremaindiv{
     padding: 10px;
 }
@@ -43,7 +46,7 @@
 }
 
 .chayanbutton:hover{
-    background-color: aqua;
+    background-color: rgb(108, 122, 122);
     padding: 11px;
 }
 
@@ -61,3 +64,102 @@
     display: flex;
     justify-content: space-between;
 }
+
+.showbutton:hover{
+    background-color: rgb(237, 241, 240);
+}
+
+
+/* //////////////Booking System///////////////// */
+
+.booking-system{
+    border: 1px solid black;
+    padding: 50px;
+}
+
+.seats div{
+    width: 30px;
+     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; margin: auto;  
+     padding: 10px;
+     border-radius: 10px;
+     cursor: pointer;
+    
+    }
+      .seats{
+        width: 70%;
+        margin: auto;
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(6, 1fr);
+    }
+      .selected {
+        background-color: green; /* Background color for selected seats */
+        color: white;
+      }
+      .screen{
+        width: 65%;
+        margin: auto;
+        border: 5px solid rgb(156, 156, 235);
+        text-align: center;
+      }
+      button{
+        width: auto;
+        border-radius: 10px;
+        color: black;
+        background-color: rgb(138, 233, 138);
+        padding: 7px;
+      }
+    
+      .booking-details{
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        padding: 30px;
+        width: fit-content;
+        margin: auto;
+      }
+    
+      .booked {
+        background-color: rgb(70, 68, 68);
+        color: white; /* You can adjust text color for better visibility */
+        cursor: not-allowed; /* Change cursor to not-allowed for disabled seats */
+      }
+    
+      .book{
+        background-color: rgb(70, 68, 68);
+        width: 50px;
+        height: 40px;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: left;
+      }
+      .available{
+        color: transparent;
+        width: 50px;
+        height: 40px;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: left;
+      }
+    
+      .confirmbox{
+        border: 1px solid black;
+        margin: auto;
+        width: fit-content;
+        padding: 20px;
+      }
+
+      .selected-seats{
+        text-align: center;
+      }    
+      
+.bookdiv {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bookdiv h5 {
+    margin-right: 10px;
+}
+
+
+      
