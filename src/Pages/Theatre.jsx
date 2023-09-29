@@ -8,6 +8,10 @@ export const Theatre = () => {
   const [date, setDate] = useState(new Date());
   const [theatreData, setTheatreData] = useState([]);
   const [movieName, setMovieName] = useState('');
+  const [selectedShowTiming, setSelectedShowTiming] = useState('');
+  const [theatre, setTheatre] = useState('');
+
+
 
   // Function to get the movie title from local storage
   const getMovieTitleFromLocalStorage = () => {
@@ -50,10 +54,18 @@ export const Theatre = () => {
     }
   };
 
-  const handleShowTimingClick = (showTiming) => {
+  const handleShowTimingClick = (showTiming, theatre) => {
     // Handle the click event for show timing here
     console.log(`Show timing selected: ${showTiming}`);
-    navigate('/booking')
+    // Save the selected show timing to local storage
+    localStorage.setItem('selectedShowTiming', showTiming);
+    localStorage.setItem('selectedTheatre', theatre);
+
+    // Update state to re-render component and show selected show timing
+    setTheatre(theatre)
+    setSelectedShowTiming(showTiming);
+    // Navigate to the booking page
+    navigate('/booking');
   };
 
   return (
@@ -84,7 +96,7 @@ export const Theatre = () => {
                   <button
                     className='showbutton'
                     key={timingIndex}
-                    onClick={() => handleShowTimingClick(showTiming)}
+                    onClick={() => handleShowTimingClick(showTiming, theatre.theatreName)}
                   >
                     {showTiming}
                   </button>

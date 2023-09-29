@@ -73,8 +73,7 @@
 /* //////////////Booking System///////////////// */
 
 .booking-system{
-    border: 1px solid black;
-    padding: 50px;
+    padding: 0px 50px 50px 50px;
 }
 
 .seats div{
@@ -102,7 +101,8 @@
         border: 5px solid rgb(156, 156, 235);
         text-align: center;
       }
-      button{
+      .bookbtn{
+        border: 1px solid green;
         width: auto;
         border-radius: 10px;
         color: black;

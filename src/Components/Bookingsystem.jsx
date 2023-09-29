@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Navbar } from './Navbar';
+import { useNavigate } from 'react-router-dom';
 
 const Seat = ({ seatNumber, isSelected, isBooked, onSelect }) => {
   const seatClassName = isSelected ? 'seat selected' : isBooked ? 'seat booked' : 'seat';
@@ -19,16 +20,31 @@ const Seat = ({ seatNumber, isSelected, isBooked, onSelect }) => {
 };
 
 export const BookingSystem = () => {
+    
+  const navigate= useNavigate()
   const seatPrice = 100; // Price per seat
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [bookedSeats, setBookedSeats] = useState([]);
   const [movieName, setMovieName] = useState('');
-  const [time, setTime] = useState('12:00 PM');
+  const [time, setTime] = useState('');
+  const [theatre, setTheatre] = useState('hello');
 
-
+  
 
   const getMovieTitleFromLocalStorage = () => {
     const storedMovieTitle = localStorage.getItem('selectedMovieTitle');
+    const selectedtime = localStorage.getItem('selectedShowTiming');
+    const selectedtheatre = localStorage.getItem('selectedTheatre');
+
+
+    if(selectedtheatre) {
+        setTheatre(selectedtheatre)
+    }
+
+    if (selectedtime) {
+        setTime(selectedtime)
+    }
+
     if (storedMovieTitle) {
       setMovieName(storedMovieTitle);
     }
@@ -85,9 +101,16 @@ export const BookingSystem = () => {
     }
   };
 
+  const Pay = () => {
+    navigate("/payment")
+  }
+
   return (
-    <div className="booking-system">
+    <>
+        <Navbar/>
+      <div className="booking-system">
       <h2>Movie Name : {movieName}</h2>
+      <h3>Theatre : {theatre}</h3>
       <h3>Show Time : {time}</h3>
       <div className='bookdiv'>
         <h5 htmlFor="">अनुपलब्ध</h5>
@@ -114,10 +137,10 @@ export const BookingSystem = () => {
       <div className="selected-seats">
         <h3>Selected Seats: {selectedSeats.join(', ')}</h3>
         <h3>Total Price: Rs.{calculateTotalPrice()}</h3>
+        <button onClick={Pay} className='bookbtn'>भुगतान करें !</button>
       </div>
-       <Link to="/details">
-        <button>भुगतान करें !</button>
-      </Link>
+      
     </div>
+    </>
   );
 };

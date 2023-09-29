@@ -7,6 +7,7 @@ import { Filmein } from "./Pages/Filmein";
 import { Theatre } from "./Pages/Theatre";
 import { Shehar } from "./Pages/Shehar";
 import { BookingSystem } from "./Components/Bookingsystem";
+import { Payment } from "./Components/Payment";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/homepage" element={<Homepage />} />
           <Route path="/booking" element={<BookingSystem />} />
+          <Route path="/payment" element={<Payment />} />
           <Route path="/homepage/filmein" element={<Filmein />} />
           <Route path="/homepage/theatre" element={<Theatre />} />
           <Route path="/homepage/shehar" element={<Shehar />} />
